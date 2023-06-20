@@ -1,0 +1,67 @@
+{% include 'base.html' %}
+{% load static %}
+{% block css_styles %}
+  <link rel="stylesheet" href="{% static 'new/style2.css' %}" />
+{% endblock css_styles %}
+
+
+
+
+
+{% block content %}
+<section id="content">
+  <nav>
+    <i class="bx bx-menu"></i>
+    <!-- <a href="#" class="nav-link">Categories</a> -->
+    <form action="#">
+      <div class="form-input">
+        <input type="search" placeholder="Search..." />
+        <button type="submit" class="search-btn">
+          <i class="bx bx-search"></i>
+        </button>
+      </div>
+    </form>
+    <input type="checkbox" id="switch-mode" hidden />
+    <label for="switch-mode" class="switch-mode"></label>
+    <!-- <a href="#" class="notification">
+      <i class="bx bxs-bell"></i>
+      <span class="num">8</span>
+    </a> -->
+    <a href="#" class="profile">
+      <img src="img/people.png" />
+    </a>
+  </nav>
+
+  <main>
+
+    
+    <div class="cont">
+        <div class="video">
+            <!-- <video src="03008.mp4" controls></video> -->
+            <h3>Upload Your Video</h3>
+            
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div style="margin-left:60px;">
+                  {{form}}
+                </div>
+
+                <input id="upload-btn" type="submit" value="Upload" />
+            </form>
+            <!-- Upload</input> -->
+        </div>
+
+    </div> 
+       
+    
+  </main>
+</section>
+{% endblock content %}
+
+
+
+  
+  
+{% block js_files %}
+<script src="{% static 'new/script.js' %}"></script>
+{% endblock js_files %}
