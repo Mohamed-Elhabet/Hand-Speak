@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from videos.forms import VideoForm
 
 from videos.models import Video
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -21,9 +22,13 @@ def upload_video(request):
     return render(request, 'videos/upload.html', {'form': form})
 '''
 
-
+@login_required(login_url='login')
 def translate_video(request, id):
-    video = Video.objects.get(id=id)
+    try:
+        video = Video.objects.get(id=id)
+    except:
+        video = None 
+
     context = {
         'vid': video
     }
@@ -439,43 +444,43 @@ def adjacting_landmarks(results):
 
 
 
-def ai_video(request):
-    vid = ''
-    prediction = ''
-    # vid = VidStream.objects.get(id=16)
-    # vid = VidStream.objects.first()
-    vid = Video.objects.last()
+# def ai_video(request):
+#     vid = ''
+#     prediction = ''
+#     # vid = VidStream.objects.get(id=16)
+#     # vid = VidStream.objects.first()
+#     vid = Video.objects.last()
     
-    with mp_holistic.Holistic(min_detection_confidence=0.5 ,min_tracking_confidence=0.5) as holistic:
-        # cap = cv2.VideoCapture("03008.mp4")
-        cap = cv2.VideoCapture(vid.video.path)
-        temp = []
-        while cap.isOpened():
-            ret,frame = cap.read()
-            if ret:
-                frame,results = mediapipe_detection(frame,holistic)
-                results = adjacting_landmarks(results)
-                temp.append(results.reshape((543,3)))
-            else:
-                break
-        cap.release()
+#     with mp_holistic.Holistic(min_detection_confidence=0.5 ,min_tracking_confidence=0.5) as holistic:
+#         # cap = cv2.VideoCapture("03008.mp4")
+#         cap = cv2.VideoCapture(vid.video.path)
+#         temp = []
+#         while cap.isOpened():
+#             ret,frame = cap.read()
+#             if ret:
+#                 frame,results = mediapipe_detection(frame,holistic)
+#                 results = adjacting_landmarks(results)
+#                 temp.append(results.reshape((543,3)))
+#             else:
+#                 break
+#         cap.release()
 
 
-    data = np.stack(temp ,axis=0).astype(np.float32)
-    print('SHAPE : ', data.shape)
+#     data = np.stack(temp ,axis=0).astype(np.float32)
+#     print('SHAPE : ', data.shape)
 
-    prediction = np.argmax(final_model(data)["outputs"])
+#     prediction = np.argmax(final_model(data)["outputs"])
 
-    print('ARGMAX : ', prediction)
-    
-
-    context = {
-        'video': vid,
-        # 'prediction': prediction
-        }
+#     print('ARGMAX : ', prediction)
     
 
-    return render(request, 'videos/upload.html', context)
+#     context = {
+#         'video': vid,
+#         # 'prediction': prediction
+#         }
+    
+
+#     return render(request, 'videos/upload.html', context)
 
 
 
@@ -500,7 +505,7 @@ new_dict = {str(value): key for key, value in json_data.items()}
 
 
 
-
+@login_required(login_url='login')
 def upload_video(request):
     user = request.user
     print('user ......... ', user)
@@ -514,42 +519,43 @@ def upload_video(request):
             video_id = video.id
             # video.save()
             
-
-            with mp_holistic.Holistic(min_detection_confidence=0.5 ,min_tracking_confidence=0.5) as holistic:
-                # cap = cv2.VideoCapture("03008.mp4")
-                cap = cv2.VideoCapture(video.video.path)
-                temp = []
-                while cap.isOpened():
-                    ret,frame = cap.read()
-                    if ret:
-                        frame,results = mediapipe_detection(frame,holistic)
-                        results = adjacting_landmarks(results)
-                        temp.append(results.reshape((543,3)))
-                    else:
-                        break
-                cap.release()
-
-
-            data = np.stack(temp ,axis=0).astype(np.float32)
-            print('SHAPE : ', data.shape)
-
-            prediction = np.argmax(final_model(data)["outputs"])
-
-            # with open("sign_to_prediction_index_map.json" ,"r") as file:
-            #     index_class = json.load(file)
-
-            #     # word = index_class[prediction]
-            #     print(index_class)
+            try:
+                with mp_holistic.Holistic(min_detection_confidence=0.5 ,min_tracking_confidence=0.5) as holistic:
+                    # cap = cv2.VideoCapture("03008.mp4")
+                    cap = cv2.VideoCapture(video.video.path)
+                    temp = []
+                    while cap.isOpened():
+                        ret,frame = cap.read()
+                        if ret:
+                            frame,results = mediapipe_detection(frame,holistic)
+                            results = adjacting_landmarks(results)
+                            temp.append(results.reshape((543,3)))
+                        else:
+                            break
+                    cap.release()
 
 
-            # video.description = prediction
-            video.translate = new_dict[str(prediction)]
+                data = np.stack(temp ,axis=0).astype(np.float32)
+                print('SHAPE : ', data.shape)
 
+                prediction = np.argmax(final_model(data)["outputs"])
+
+                # with open("sign_to_prediction_index_map.json" ,"r") as file:
+                #     index_class = json.load(file)
+
+                #     # word = index_class[prediction]
+                #     print(index_class)
+
+
+                # video.description = prediction
+                video.translate = new_dict[str(prediction)]
+            except:
+                video.translate = 'Not Known'
+                print('ARGMAX : ', prediction)
             
 
             video.save()
 
-            print('ARGMAX : ', prediction)
 
 
 

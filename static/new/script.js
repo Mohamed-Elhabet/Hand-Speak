@@ -1,13 +1,14 @@
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
-allSideMenu.forEach(item=> {
-    const li = item.parentElement;
-    item.addEventListener('click', function () {
-        allSideMenu.forEach(i=> {
-            i.parentElement.classList.remove('active');
-        })
-        li.classList.add('active');
-    })
-});
+// allSideMenu.forEach(item=> {
+//     const li = item.parentElement;
+//     item.addEventListener('click', function () {
+//         allSideMenu.forEach(i=> {
+//             i.parentElement.classList.remove('active');
+//         })
+//         li.classList.add('active');
+//     })
+// });
+
 // TOGGLE SIDEBAR
 const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
@@ -40,11 +41,26 @@ window.addEventListener('resize', function () {
         searchForm.classList.remove('show');
     }
 })
+
+
+
 const switchMode = document.getElementById('switch-mode');
+const storeMode = localStorage.getItem('mode')
+
+if(storeMode === 'dark'){
+    switchMode.checked = true;
+    document.body.classList.add('dark')
+}else{
+    switchMode.checked = false;
+    document.body.classList.remove('dark')
+}
+
 switchMode.addEventListener('change', function () {
     if(this.checked) {
         document.body.classList.add('dark');
+        localStorage.setItem('mode', 'dark')
     } else {
         document.body.classList.remove('dark');
+        localStorage.setItem('mode', 'light')
     }
 })

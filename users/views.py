@@ -51,3 +51,22 @@ def register_page(request):
         # 'form': form,
     }
     return render(request, 'users/login.html', context)
+
+
+
+
+def logout_page(request):
+    logout(request)
+    return redirect('login')
+
+
+
+
+def profile(request):
+    user = request.user
+    return render(request, 'users/profile.html', {'user': user})
+
+
+
+def team(request):
+    return render(request, 'users/team.html')

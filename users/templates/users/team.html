@@ -1,0 +1,130 @@
+{% include 'base.html' %}
+{% load static %}
+{% block css_styles %}
+  <link rel="stylesheet" href="{% static 'new/team.css' %}" />
+{% endblock css_styles %}
+
+
+
+
+
+{% block content %}
+<section id="content">
+    <nav>
+      <i class="bx bx-menu"></i>
+      <!-- <a href="#" class="nav-link">Categories</a> -->
+      <form action="#">
+        <div class="form-input">
+          <input type="search" placeholder="Search..." />
+          <button type="submit" class="search-btn">
+            <i class="bx bx-search"></i>
+          </button>
+        </div>
+      </form>
+      <input type="checkbox" id="switch-mode" hidden />
+      <label for="switch-mode" class="switch-mode"></label>
+      
+      <a href="{% url 'profile' %}" class="profile">
+        <img src="{{request.user.profile.photo.url}}" />
+      </a>
+    </nav>
+
+    <main>
+
+        <div class="carousel">
+            <!-- <img src="3.jpeg" alt="Maria de Almeida" /> -->
+            <div class="slides">
+                <div class="slide active">
+                    <img src="{{request.user.profile.photo.url}}" alt="Maria de Almeida" />
+                    <blockquote class="testimonial">
+                    <p class="testimonial-text">
+                        Mohamed Elhabet
+                    </p>
+                    <p class="testimonial-author">💥️ Fullstack Engineer </p>
+                    <p class="testimonial-author">💥️ Team Leader</p>
+                    <!-- <p class="testimonial-job">Senior Product Manager at EDP Comercial</p> -->
+                    </blockquote>
+                </div>
+
+                <div class="slide color: blue;">
+                    <img src="{{request.user.profile.photo.url}}" alt="Maria de Almeida" />
+                    <blockquote class="testimonial">
+                    <p class="testimonial-text">
+                        Karim
+                    </p>
+                    <p class="testimonial-author">Fullstack Engineer </p>
+                    {% comment %} <p class="testimonial-author">Team Leader</p> {% endcomment %}
+                    <!-- <p class="testimonial-job">Senior Product Manager at EDP Comercial</p> -->
+                    </blockquote>
+                </div>
+                <div class="slide active">
+                    <img src="{{request.user.profile.photo.url}}" alt="Maria de Almeida" />
+                    <blockquote class="testimonial">
+                    <p class="testimonial-text">
+                        Mohamed 
+                    </p>
+                    <p class="testimonial-author">Fullstack Engineer </p>
+                    {% comment %} <p class="testimonial-author">Team Leader</p> {% endcomment %}
+                    <!-- <p class="testimonial-job">Senior Product Manager at EDP Comercial</p> -->
+                    </blockquote>
+                </div>
+            
+            
+                
+          
+            </div>
+            
+      
+            <button class="btn btn--left">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="btn-icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+            <button class="btn btn--right">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="btn-icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            {% comment %} <div class="dots">
+              <button class="dot dot--fill">&nbsp;</button>
+              <button class="dot">&nbsp;</button>
+              <button class="dot">&nbsp;</button>
+              <button class="dot">&nbsp;</button>
+            </div> {% endcomment %}
+          </div>
+          
+      
+    </main>
+  </section>
+{% endblock content %}
+
+
+
+  
+  
+{% block js_files %}
+<script src="{% static 'new/script.js' %}"></script>
+<script src="{% static 'new/team.js' %}"></script>
+{% endblock js_files %}

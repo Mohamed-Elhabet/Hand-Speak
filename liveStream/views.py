@@ -9,6 +9,7 @@ import cv2
 
 from tensorflow.keras.layers import LSTM, Dense
 from tensorflow import keras
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -69,7 +70,7 @@ actions = ['age', 'book', 'call', 'car', 'day', 'egypt', 'english', 'enjoy',
 
 
 
-
+@login_required(login_url='login')
 def home(request):
     sequence = []
     sentence = []
