@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from videos.forms import VideoForm
 
-from videos.models import Video
+from videos.models import LearningVideo, Video
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -39,6 +39,28 @@ def translate_video(request, id):
 
 
 
+@login_required(login_url='login')
+def search(request):
+    q = request.GET.get('search') if request.GET.get('search') != None else ""
+    video = LearningVideo.objects.filter(translate__iexact=q).first()
+
+    print(video)
+
+    context = {
+        'vid': video
+    }
+    return render(request, 'videos/translate.html', context)
+
+
+
+
+@login_required(login_url='login')
+def learn(request):
+    videos = LearningVideo.objects.all()
+    context = {
+        'videos': videos
+    }
+    return render(request, 'videos/all_videos.html', context)
 
 
 

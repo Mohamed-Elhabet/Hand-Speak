@@ -53,7 +53,7 @@
           <form method="POST" action="{% url 'register' %}" class="sign-up-form">
             {% csrf_token %}
             <h2 class="title">Sign up</h2>
-            <div class="input-field">
+            {% comment %} <div class="input-field">
               <i class="fas fa-user"></i>
               <input name="username" type="text" placeholder="Username" />
             </div>
@@ -64,13 +64,27 @@
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input name="password1" type="password" placeholder="Password" />
-            </div>
-            {% comment %} <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input name="password2" type="password" placeholder="Confirm Password" />
             </div> {% endcomment %}
+            
 
-            {% comment %} {{form}} {% endcomment %}
+
+            {% for field in form %}
+              <div class="input-field">
+                {% if field.name == 'username' %}
+                  <i class="fas fa-user"></i>
+                {% elif field.name == 'email' %}
+                  <i class="fas fa-envelope"></i>
+                {% elif field.name == 'password1' %}
+                  <i class="fas fa-lock"></i>
+                {% elif field.name == 'password2' %}
+                  <i class="fas fa-lock"></i>
+                {% endif %}
+                {{ field }}
+              </div>
+            {% endfor %}
+
+
+
             <input type="submit" class="btn" value="Sign up" />
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">

@@ -8,3 +8,14 @@ class Video(models.Model):
     video = models.FileField(upload_to='')
     translate = models.TextField(null=True, blank=True)
 
+    def __str__(self):
+        return self.translate
+
+
+
+class LearningVideo(models.Model):
+    translate = models.CharField(max_length=250)
+    video = models.FileField(upload_to='')
+
+    def __str__(self):
+        return self.translate

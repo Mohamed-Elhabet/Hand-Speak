@@ -13,9 +13,9 @@
     <nav>
       <i class="bx bx-menu"></i>
       <!-- <a href="#" class="nav-link">Categories</a> -->
-      <form action="#">
+      <form action="{% url 'search' %}" method="GET">
         <div class="form-input">
-          <input type="search" placeholder="Search..." />
+          <input type="search" placeholder="Search..." name="search" />
           <button type="submit" class="search-btn">
             <i class="bx bx-search"></i>
           </button>
@@ -46,29 +46,52 @@
                     </blockquote>
                 </div>
 
-                <div class="slide color: blue;">
-                    <img src="{{request.user.profile.photo.url}}" alt="Maria de Almeida" />
-                    <blockquote class="testimonial">
-                    <p class="testimonial-text">
-                        Karim
-                    </p>
-                    <p class="testimonial-author">Fullstack Engineer </p>
-                    {% comment %} <p class="testimonial-author">Team Leader</p> {% endcomment %}
-                    <!-- <p class="testimonial-job">Senior Product Manager at EDP Comercial</p> -->
-                    </blockquote>
-                </div>
                 <div class="slide active">
-                    <img src="{{request.user.profile.photo.url}}" alt="Maria de Almeida" />
+                    <img src="{% static 'team/karim.jpeg' %}" alt="Maria de Almeida" />
                     <blockquote class="testimonial">
                     <p class="testimonial-text">
-                        Mohamed 
+                        Karim Elmamlouk
                     </p>
-                    <p class="testimonial-author">Fullstack Engineer </p>
-                    {% comment %} <p class="testimonial-author">Team Leader</p> {% endcomment %}
+                    <p class="testimonial-author">💥️ AI Engineer </p>
+                    {% comment %} <p class="testimonial-author">💥️ Team Leader</p> {% endcomment %}
                     <!-- <p class="testimonial-job">Senior Product Manager at EDP Comercial</p> -->
                     </blockquote>
                 </div>
-            
+
+                
+                <div class="slide active">
+                    <img src="{% static 'team/hassan.jpg' %}" alt="Maria de Almeida" />
+                    <blockquote class="testimonial">
+                    <p class="testimonial-text">
+                        Hassan Abo Etia
+                    </p>
+                    <p class="testimonial-author">💥️ UI / UX Design  </p>
+                    
+                    </blockquote>
+                </div>
+
+                
+                <div class="slide active">
+                    <img src="{% static 'team/emad.jpeg' %}" alt="Maria de Almeida" />
+                    <blockquote class="testimonial">
+                    <p class="testimonial-text">
+                        Emad Eldin
+                    </p>
+                    <p class="testimonial-author">💥️ Engineer </p>
+                    </blockquote>
+                </div>
+
+                <div class="slide active">
+                    <img src="{% static 'team/khaled.jpeg' %}" alt="Maria de Almeida" />
+                    <blockquote class="testimonial">
+                    <p class="testimonial-text">
+                        khaled
+                    </p>
+                    <p class="testimonial-author">💥️ Mobile Development Engineer </p>
+                    </blockquote>
+                </div>
+
+                
             
                 
           

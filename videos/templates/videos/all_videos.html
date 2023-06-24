@@ -1,11 +1,14 @@
+
+
+
+
+
+
 {% include 'base.html' %}
 {% load static %}
 {% block css_styles %}
-  <link rel="stylesheet" href="{% static 'new/style2.css' %}" />
+  <link rel="stylesheet" href="{% static 'new/style.css' %}" />
 {% endblock css_styles %}
-
-
-
 
 
 {% block content %}
@@ -13,6 +16,7 @@
   <nav>
     <i class="bx bx-menu"></i>
     <!-- <a href="#" class="nav-link">Categories</a> -->
+
     <form action="{% url 'search' %}" method="GET">
       <div class="form-input">
         <input type="search" placeholder="Search..." name="search" />
@@ -34,34 +38,41 @@
 
   <main>
 
-    
-    <div class="cont">
-        <div class="video">
-            <!-- <video src="03008.mp4" controls></video> -->
-            <h3>Upload Your Video</h3>
+    {% for vid in videos %}
+        <div class="cont" style="margin-bottom:55px;">
             
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div style="margin-left:60px;">
-                  {{form}}
-                </div>
+            <div class="video">
+                {% comment %} <video src="{{vid.video.url}}" controls></video> {% endcomment %}
+                {% if vid %}
+                <video src="{{vid.video.url}}" controls type="video/mp4"></video>
+                {% endif %}
+            </div>
 
-                <input id="upload-btn" type="submit" value="Upload" />
-            </form>
-            <!-- Upload</input> -->
+            <div class="output-text">
+                {% if not vid %}
+                <div class="empty-text">
+                <p>No Video Found</p>
+            </div>
+                {% else %}
+                
+                <div class="empty-text" style="font-size:20px; font-weight:800">
+                    <p>{{vid.translate}}</p>
+                </div>
+                {% endif %}
+            </div>
+
         </div>
 
-    </div> 
-       
+    {% endfor %}
     
   </main>
 </section>
 {% endblock content %}
-
-
-
   
   
 {% block js_files %}
-<script src="{% static 'new/script.js' %}"></script>
+  <script src="{% static 'new/script.js' %}"></script>
 {% endblock js_files %}
+
+
+
