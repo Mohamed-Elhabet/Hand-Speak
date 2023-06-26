@@ -32,7 +32,7 @@
               <input type="password" name="password" placeholder="Password" />
             </div>
             <input type="submit" value="Login" class="btn solid" />
-            <p class="social-text">Or Sign in with social platforms</p>
+            {% comment %} <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
@@ -46,7 +46,7 @@
               <a href="#" class="social-icon">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-            </div>
+            </div> {% endcomment %}
           </form>
           {% else %}
           
@@ -86,7 +86,7 @@
 
 
             <input type="submit" class="btn" value="Sign up" />
-            <p class="social-text">Or Sign up with social platforms</p>
+            {% comment %} <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
@@ -100,7 +100,7 @@
               <a href="#" class="social-icon">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-            </div>
+            </div> {% endcomment %}
           </form>
           {% endif %}
         </div>
@@ -111,8 +111,7 @@
           <div class="content">
             <h3>New here ?</h3>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-              ex ratione. Aliquid!
+              You can sign up as a new user easily, and be one of users of this website 
             </p>
             
             <a href="{% url 'register' %}">
@@ -127,8 +126,7 @@
           <div class="content">
             <h3>One of us ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+              Happy to see you again, you can easily login in your website 
             </p>
             <a href="{% url 'login' %}">
               <button class="btn transparent" id="sign-in-btn">

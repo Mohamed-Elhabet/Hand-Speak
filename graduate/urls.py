@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('videos.urls')),
     path('live/', include('liveStream.urls')),
     path('users/', include('users.urls')),
+    # path('new/', include('new_model.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

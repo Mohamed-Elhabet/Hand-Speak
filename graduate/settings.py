@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'videos',
     'liveStream',
     'users',
+    # 'new_model'
 ]
 
 MIDDLEWARE = [

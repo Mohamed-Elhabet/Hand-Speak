@@ -39,10 +39,10 @@
   <main>
 
     <div class="cont">
-        <div class="video">
+        <div class="video" >
             {% comment %} <video src="{{vid.video.url}}" controls></video> {% endcomment %}
             {% if vid %}
-              <video src="{{vid.video.url}}" controls type="video/mp4"></video>
+              <video style="max-height: 500px;" src="{{vid.video.url}}" controls type="video/mp4"></video>
             {% endif %}
         </div>
 

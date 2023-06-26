@@ -11,6 +11,8 @@ opencv-python = "*"
 numpy = "*"
 tensorflow = "*"
 pandas = "*"
+tqdm = "*"
+fastdtw = "*"
 
 [dev-packages]
 
