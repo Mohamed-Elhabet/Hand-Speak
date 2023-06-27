@@ -98,6 +98,26 @@ def upload_video(request):
 
 
 
+# import os
+# from django.core.files import File 
+
+# def add_videos(request):
+#     videos_directory = 'videos-project'
+#     for filename in os.listdir(videos_directory):
+#         if filename.endswith('.mp4'):
+#             # Extract the translated name by removing the '.mp4' extension
+#             translate = os.path.splitext(filename)[0]
+
+#             # Create an instance of LearningVideo
+#             video_instance = LearningVideo(translate=translate)
+
+#             # Open the video file 
+#             with open(os.path.join(videos_directory, filename), 'rb') as video_file:
+#                 # Save the video file to the video field 
+#                 video_instance.video.save(filename, File(video_file), save=True)
+    
+#     return render(request, 'videos/upload.html')
+
 
 
 

@@ -11,4 +11,6 @@ urlpatterns = [
     path('', views.upload_video, name='upload-video'),
     path('search/', views.search, name='search'),
     path('learn/', views.learn, name='learn'),
+
+    # path('add_videos/', views.add_videos)
 ]
