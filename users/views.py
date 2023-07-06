@@ -9,25 +9,31 @@ from users.models import Profile
 
 def login_page(request):
     page = 'login'
+    error = None 
     if request.user.is_authenticated:
         return redirect('upload-video')
     
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        password = request.POST.get('password')
+    try:
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            password = request.POST.get('password')
 
-        try:
-            user = User.objects.get(username=name)
-        except:
-            pass 
+            try:
+                user = User.objects.get(username=name)
+            except:
+                pass 
 
-        user = authenticate(request, username=user, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('upload-video')
+            user = authenticate(request, username=user, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('upload-video')
+    except:
+        error = 'Username Or Password Incorrect'
+        pass 
 
     context = {
-        'page': page
+        'page': page,
+        'error': error
     }
     return render(request, 'users/login.html', context)
 

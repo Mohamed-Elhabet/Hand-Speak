@@ -146,6 +146,15 @@ body {
 }
 /* SIDEBAR */
 /* CONTENT */
+
+#speakButton{
+    background: none;
+    border: none;
+    /* fill: green; */
+    fill: var(--dark);
+    font-size: 17px;
+  }
+
 #content {
     position: relative;
     width: calc(100% - 280px);

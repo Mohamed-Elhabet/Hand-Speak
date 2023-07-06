@@ -27,12 +27,12 @@
           <span class="text">Learn</span>
         </a>
       </li>
-      <li>
+      {% comment %} <li>
         <a href="#">
           <i class="bx bxs-message-dots"></i>
           <span class="text">Message</span>
         </a>
-      </li>
+      </li> {% endcomment %}
       <li class="{% if request.path == group_team %} active {% endif %}">
         <a href="{% url 'team' %}">
           <i class="bx bxs-group"></i>

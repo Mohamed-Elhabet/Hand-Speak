@@ -13,6 +13,7 @@ tensorflow = "*"
 pandas = "*"
 tqdm = "*"
 fastdtw = "*"
+gtts = "*"
 
 [dev-packages]
 

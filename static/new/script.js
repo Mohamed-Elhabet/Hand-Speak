@@ -64,3 +64,22 @@ switchMode.addEventListener('change', function () {
         localStorage.setItem('mode', 'light')
     }
 })
+
+
+
+// Speak text 
+
+// function speakText() {
+//     var textElement = document.getElementById('translatedText');
+//     var translatedText = textElement.innerText.trim();
+//     var ttsUrl = 'https://translate.google.com/translate_tts?ie=UTF-8&q=' + encodeURIComponent(translatedText) + '&tl=en&total=1&idx=0&textlen=' + translatedText.length + '&client=tw-ob&prev=input';
+//     var audioElement = new Audio(ttsUrl);
+//     audioElement.play();
+// }
+
+
+function speakText(translatedText) {
+    var ttsUrl = 'https://translate.google.com/translate_tts?ie=UTF-8&q=' + encodeURIComponent(translatedText) + '&tl=en&total=1&idx=0&textlen=' + translatedText.length + '&client=tw-ob&prev=input';
+    var audioElement = new Audio(ttsUrl);
+    audioElement.play();
+}
