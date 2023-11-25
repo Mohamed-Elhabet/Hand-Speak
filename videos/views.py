@@ -7,21 +7,6 @@ from .main_main import prediction
 
 # Create your views here.
 
-'''
-def upload_video(request):
-    print(request.user)
-    form = VideoForm()
-    if request.method == 'POST':
-        form = VideoForm(request.POST, request.FILES)
-        if form.is_valid:
-            video = form.save(commit=False)
-            video.user = request.user 
-            video.save()
-            id_video = video.id 
-        return redirect('translate-video', id_video)
-
-    return render(request, 'videos/upload.html', {'form': form})
-'''
 
 @login_required(login_url='login')
 def translate_video(request, id):

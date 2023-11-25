@@ -39,27 +39,6 @@ def login_page(request):
 
 
 
-# def register_page(request):
-#     page = 'register'
-#     # form = CustomUserCreationForm()
-#     if request.method == 'POST':
-#         name = request.POST.get('username')
-#         email = request.POST.get('email')
-#         password1 = request.POST.get('password1')
-#         # password2 = request.POST.get('password2')
-#         # form = CustomUserCreationForm(username=name, email=email, password1=password1, password2=password2)
-#         user = User.objects.create(username=name, email=email, password=password1)
-#         login(request, user)
-#         return redirect('upload-video')
-        
-
-#     context = {
-#         'page': page,
-#         # 'form': form,
-#     }
-#     return render(request, 'users/login.html', context)
-
-
 
 def register_page(request):
     page = 'register'
@@ -101,18 +80,15 @@ def profile(request):
 
 
 def update_profile(request):
-    print("______________________________________")
     user = request.user
     userForm = UserUpdateForm(instance=request.user)
     profileForm = UserProfileUpdateForm(instance=request.user.profile)
 
     if request.method == 'POST':
-        print("UUUUUUUUUUUUUUUUU")
         userForm = UserUpdateForm(request.POST, instance=user)
         profileForm = UserProfileUpdateForm(request.POST, request.FILES, instance=user.profile)
 
         if userForm.is_valid() and profileForm.is_valid():
-            print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd")
             userForm.save()
             profileForm.save()
             return redirect('profile')
