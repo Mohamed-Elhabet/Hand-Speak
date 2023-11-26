@@ -69,3 +69,12 @@ python manage.py createsuperuser
 ```bash
 python3 manage.py runserver
 ```
+
+
+
+### 6. Screenshot from application:
+![](./image-readme/1.jpeg)
+
+![](./image-readme/2.jpeg)
+
+![](./image-readme/3.jpeg)
